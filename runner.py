@@ -21,7 +21,7 @@ def main():
     data = pd.read_csv(src)
     print("Finished fetching. Data size: [" + str(data.shape[0]) +" x " + str(data.shape[1]) + "]")
     if not file_exists:
-      data.to_csv(raw_data_filename)
+      data.to_csv(raw_data_filename, index=False)
 
   except Exception as e:
     print("Error " + str(e))
