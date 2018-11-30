@@ -1,0 +1,3 @@
+
+# Ignore raw data. No need to be uploading and downloading this.
+raw_data.csv
