@@ -2,6 +2,10 @@
 Filename: runner.py
 Authors: Ikechuckwu A., David A
 """
+
+# only used during sanity check.
+# import scipy.stats as stats
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -46,6 +50,8 @@ def create_line_plot(data):
   plt.xlabel("Year-Month")
   plt.show()
 
+  # TODO(anude, awogbemila): Report Mean and Median of the Value grouped by year.
+
 def do_november_2017_regression(data):
   data_for_2017 = data.loc[data["year"] == 2017]
   just_till_october = data_for_2017.loc[lambda df: df["reference_period_desc"] != "NOV"]
@@ -75,9 +81,23 @@ def do_november_2017_regression(data):
 
   # (d)
   # TODO(anude, awogbemila): compute r-squared value (over what time period)
+  x = list(range(1, 11))
+  value_mean = y.mean()
+  predictions = pd.DataFrame([m * i + c for i in x])
+  SSR = sum(((predictions - value_mean).apply(lambda val: val ** 2)).values)[0]
+  SSTO = sum((y - value_mean).apply(lambda val: val ** 2).values)
+  print(SSR, SSTO)
+  r_squared = SSR / SSTO
+  print("r-squared", r_squared)
+
+  # Sanity check: gives good result. Don't forget to import scipy.stats
+  # _, _, sprsq, _, _ = stats.linregress(x, y)
+  # print("scipy r-squared", r_squared)
 
   # (e)
   # TODO(anude, awogbemila): line plot for 2017
+  plt.plot(x, y, x, predictions)
+  plt.show()
 
 
 def main():
