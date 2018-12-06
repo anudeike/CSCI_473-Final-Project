@@ -46,10 +46,10 @@ def create_line_plot(data):
   # Period where drop occurs between 2002 and 2009
   # plt.plot(x[150: 175], y[150: 175])
 
-  # plt.plot(x, y)
-  # plt.ylabel("Value")
-  # plt.xlabel("Year-Month")
-  # plt.show()
+  plt.plot(x, y)
+  plt.ylabel("Value")
+  plt.xlabel("Year-Month")
+  plt.show()
 
   # TODO(anude, awogbemila): Report Mean and Median of the Value grouped by year.
   unique_years = data.year.unique()
@@ -108,14 +108,20 @@ def do_november_2017_regression(data):
 
   # (e)
   # TODO(anude, awogbemila): line plot for 2017
-  plt.plot(x, y, x, predictions)
+  _, ax = plt.subplots()
+  ax.plot(x, y, label="Raw Data") 
+  ax.plot(x, predictions, label="Prediction")
+
+  legend = ax.legend()
+  plt.xlabel("month index")
+  plt.ylabel("Value")
   plt.show()
 
 
 def main():
   data = get_data()
   create_line_plot(data)
-  # do_november_2017_regression(data)
+  do_november_2017_regression(data)
 
 if __name__ == "__main__":
   main()
