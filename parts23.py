@@ -98,7 +98,7 @@ def do_november_2017_regression(data):
   r_squared = SSR / SSTO
   print("r-squared", r_squared)
 
-  # Alternate R-Squared method verified to give smae result.
+  # Alternate R-Squared method verified to give same result.
   # r_squared_ = 1 - (SSE / SSTO)
   # print("r-squared_", r_squared_)
 
@@ -109,11 +109,12 @@ def do_november_2017_regression(data):
   # (e)
   # TODO(anude, awogbemila): line plot for 2017
   _, ax = plt.subplots()
-  ax.plot(x, y, label="Raw Data") 
-  ax.plot(x, predictions, label="Prediction")
+
+  ax.plot(list(year_index.keys())[:10], y, label="Raw Data")
+  ax.plot(list(year_index.keys())[:10], predictions, label="Prediction")
 
   legend = ax.legend()
-  plt.xlabel("month index")
+  plt.xlabel("Month")
   plt.ylabel("Value")
   plt.show()
 
